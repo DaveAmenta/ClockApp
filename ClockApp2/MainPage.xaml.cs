@@ -60,13 +60,13 @@ namespace ClockApp2
                 if (itr % 100 == 0)
                 {
 
-                    TempNow = (await WeatherLib.WeatherAPI.GetCurrentTemperature("98052") + "°");
-                    Conditions = await WeatherLib.WeatherAPI.GetCurrentConditions("98052");
-                    WindSpeed = (await WeatherLib.WeatherAPI.GetWindSpeed("98052") + "mph");
-                    Sunrise = (await WeatherLib.WeatherAPI.GetSunrise("98052")).ToString("h:mm tt");
-                    Sunset = (await WeatherLib.WeatherAPI.GetSunset("98052")).ToString("h:mm tt");
-                    Humidity = (await WeatherLib.WeatherAPI.GetHumidity("98052") + "%");
-                    var f = await WeatherLib.WeatherAPI.GetForecast("98052");
+                    TempNow = (await WeatherLib.WeatherAPI.GetCurrentTemperature("98004") + "°");
+                    Conditions = await WeatherLib.WeatherAPI.GetCurrentConditions("98004");
+                    WindSpeed = (await WeatherLib.WeatherAPI.GetWindSpeed("98004") + "mph");
+                    Sunrise = (await WeatherLib.WeatherAPI.GetSunrise("98004")).ToString("h:mm tt");
+                    Sunset = (await WeatherLib.WeatherAPI.GetSunset("98004")).ToString("h:mm tt");
+                    Humidity = (await WeatherLib.WeatherAPI.GetHumidity("98004") + "%");
+                    var f = await WeatherLib.WeatherAPI.GetForecast("98004");
                     Forecast.Clear();
                     foreach (var fx in f) { Forecast.Add(fx); }
 
@@ -116,7 +116,10 @@ namespace ClockApp2
 
             Refresh();
             DataContext = this;
+
+            wb.Navigate(new Uri("https://home.nest.com/"));
             
+           
         }
 
         /// <summary>
@@ -133,6 +136,74 @@ namespace ClockApp2
                 Refresh();
             };
             dt.Start();
+
+
+            var Presets = new List<string>
+            {
+               "White","Relax", "Default", "O_Default"
+            };
+
+            var Colors = new List<string> {
+               "Red","Blue","Purple","Green"
+            };
+
+            foreach (var cc in Colors)
+            {
+                Button c = new Button
+                {
+                    Content = cc,
+                    Tag = cc,
+                    Padding = new Thickness(6),
+                    //Margin = new Thickness(1)
+                };
+                c.Click += (s, _) =>
+                {
+                    var x = (string)((Button)s).Tag;
+                    var hc = new System.Net.Http.HttpClient();
+
+                    hc.GetAsync("http://192.168.0.2:8080/color?" + x);
+                };
+                colors.Children.Add(c);
+            }
+
+            foreach (var p in Presets)
+            {
+                Button c = new Button
+                {
+                    Content = p,
+                    Tag = p,
+                    Padding = new Thickness(6),
+                    //Margin = new Thickness(1)
+                };
+                c.Click += (s, _) =>
+                {
+                    var x = (string)((Button)s).Tag;
+                    var hc = new System.Net.Http.HttpClient();
+
+                    hc.GetAsync("http://192.168.0.2:8080/" + x);
+                };
+                presets.Children.Add(c);
+            }
+
+            for (int ri = 2; ri <= 10; ri += 2)
+            {
+                var i = ri;
+                Button c = new Button
+                {
+                    Content = string.Format("{0}%", i * 10),
+                    Tag = i * 10,
+                    Padding = new Thickness(6),
+                    //Margin = new Thickness(1)
+                };
+                c.Click += (s, _) =>
+                {
+                    int x = (int)((Button)s).Tag;
+                    var hc = new System.Net.Http.HttpClient();
+
+                    hc.GetAsync("http://192.168.0.2:8080/brightness?" + ((float)x * 2.55));
+                };
+                brightness.Children.Add(c);
+            }
 
 
             //wb.Navigate(new Uri("http://192.168.0.1/graph_if.svg?vlan2"));

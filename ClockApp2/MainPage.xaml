@@ -10,37 +10,37 @@
     <Grid Background="Black">
 
         <StackPanel Orientation="Vertical" Margin="24">
-            <TextBlock Foreground="LightGray" Margin="0,0,0,4"  Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Text="{Binding Day}" />
-            <TextBlock VerticalAlignment="Bottom" Margin="0,-12,0,-12"  Padding="0" HorizontalAlignment="Center" FontSize="66" Text="{Binding Time}" />
+            <TextBlock Foreground="LightGray" Margin="0,0,0,0"  Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Text="{Binding Day}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="0,-12,0,-12"  Padding="0" HorizontalAlignment="Center" FontSize="46" Text="{Binding Time}" />
 
                 <StackPanel Margin="0,12,0,12" Orientation="Horizontal">
                     <TextBlock Margin="0,-12,0,-18" HorizontalAlignment="Right" FontSize="84" Text="{Binding TempNow}" />
                     <StackPanel Margin="24,0,0,0" Orientation="Vertical">
-                        <TextBlock Foreground="LightGray" Padding="0" FontSize="20" Text="{Binding Conditions}" />
-                        <TextBlock Foreground="LightGray" Padding="0" FontSize="20" Text="{Binding WindSpeed}" />
-                        <TextBlock Foreground="LightGray" Padding="0" FontSize="20" Text="{Binding Humidity}" />
+                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding Conditions}" />
+                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding WindSpeed}" />
+                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding Humidity}" />
                     </StackPanel>
                 </StackPanel>
 
-            <ItemsControl Margin="0,12,0,12" HorizontalAlignment="Center" ItemsSource="{Binding Forecast}">
+            <ItemsControl Margin="0,12,0,0" HorizontalAlignment="Center" ItemsSource="{Binding Forecast}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,4,0,4">
+                        <Grid Margin="0,1,0,1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100" />
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="20" />
-                                <RowDefinition Height="20" />
+                                <RowDefinition Height="16" />
+                                <RowDefinition Height="16" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" FontSize="26" Text="{Binding Day}" />
-                            <TextBlock Margin="0" Foreground="Red" Grid.Column="1" FontSize="22" Text="{Binding High}" />
-                            <TextBlock Margin="0" Foreground="LightBlue" Grid.Column="1" Grid.Row="1" FontSize="22" Text="{Binding Low}" />
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" FontSize="18" Text="{Binding Day}" />
+                            <TextBlock Margin="0" Foreground="Red" Grid.Column="1" FontSize="18" Text="{Binding High}" />
+                            <TextBlock Margin="0" Foreground="LightBlue" Grid.Column="1" Grid.Row="1" FontSize="18" Text="{Binding Low}" />
 
-                            <TextBlock Foreground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" Grid.Column="3" FontSize="20" Text="{Binding Text}" />
+                            <TextBlock Foreground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" Grid.Column="3" FontSize="18" Text="{Binding Text}" />
                         </Grid>
                         
                     </DataTemplate>
@@ -65,7 +65,7 @@
                         <DataTemplate>
                             <Grid>
                                 <!--<TextBlock FontSize="16" Margin="2" Text="{Binding}" />-->
-                                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0,1,0,0" Width="200" Height="1" Minimum="0" Maximum="100" Value="{Binding}" />
+                                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0,0,0,0" Width="200" Height="0.5" Minimum="0" Maximum="100" Value="{Binding}" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -84,18 +84,20 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="0,4,4,0" HorizontalAlignment="Left" Orientation="Vertical">
-                    <TextBlock Margin="0" HorizontalAlignment="Right" FontSize="26" Text="{Binding Memory}" />
-                    <TextBlock Margin="0,-4,4,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="14" Foreground="LightGray">free</TextBlock>
+                    <TextBlock Margin="0" HorizontalAlignment="Right" FontSize="12" Text="{Binding Memory}" />
+                    <TextBlock Margin="0,-4,4,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="12" Foreground="LightGray">free</TextBlock>
                 </StackPanel>
-                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0" VerticalAlignment="Center"  Grid.Column="1" Width="200" Height="10" Minimum="0" Maximum="{Binding TotalMemory}" Value="{Binding UsedMemory}" />
+                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0" VerticalAlignment="Center"  Grid.Column="1" Width="200" Height="1" Minimum="0" Maximum="{Binding TotalMemory}" Value="{Binding UsedMemory}" />
                 
             </Grid>
-<!--
+            
             <Grid Margin="0,0,0,12">
                 
                 <WebView Name="wb" Width="250" Height="250" />
             </Grid>
-        -->
+            <StackPanel Orientation="Horizontal" Name="brightness" />
+            <StackPanel Orientation="Horizontal" Name="presets" />
+            <StackPanel Orientation="Horizontal" Name="colors" />
         </StackPanel>
     </Grid>
 </Page>
