@@ -7,65 +7,108 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Black">
+    <Grid HorizontalAlignment="Stretch" Background="Black" Margin="12">
 
-        <StackPanel Orientation="Vertical" Margin="24">
-            <TextBlock Foreground="LightGray" Margin="0,0,0,0"  Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Text="{Binding Day}" />
-            <TextBlock VerticalAlignment="Bottom" Margin="0,-12,0,-12"  Padding="0" HorizontalAlignment="Center" FontSize="46" Text="{Binding Time}" />
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <TextBlock VerticalAlignment="Bottom" 
+                       Margin="0, -16, 0, -8"  
+                       Padding="0" 
+                       HorizontalAlignment="Center" 
+                       FontSize="56" 
+                       
+                       LineHeight="0.8"
+                       Text="{Binding Time}" />
+            <TextBlock Foreground="LightGray" 
+                       Margin="0, -4, 0, 0"  
+                       Padding="0" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Center" 
+                       FontSize="18" 
+                       LineHeight="0.8"
+                       Text="{Binding Day}" />
 
-                <StackPanel Margin="0,12,0,12" Orientation="Horizontal">
-                    <TextBlock Margin="0,-12,0,-18" HorizontalAlignment="Right" FontSize="84" Text="{Binding TempNow}" />
-                    <StackPanel Margin="24,0,0,0" Orientation="Vertical">
-                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding Conditions}" />
-                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding WindSpeed}" />
-                    <TextBlock Foreground="LightGray" Padding="0" FontSize="18" Text="{Binding Humidity}" />
-                    </StackPanel>
-                </StackPanel>
+            <StackPanel Width="320" Orientation="Horizontal">
+                <Grid Margin="0, 0, 12, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-            <ItemsControl Margin="0,12,0,0" HorizontalAlignment="Center" ItemsSource="{Binding Forecast}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,1,0,1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="16" />
-                                <RowDefinition Height="16" />
-                            </Grid.RowDefinitions>
+                    <TextBlock Margin="0" 
+                           Grid.Row="0"
+                           Padding="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontSize="38" 
+                           Text="{Binding TempNow}" />
+                    <TextBlock 
+                           Grid.Row="1"
+                           Padding="0" 
+                           Margin="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontSize="38" 
+                           Text="{Binding Humidity}" />
 
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" FontSize="18" Text="{Binding Day}" />
-                            <TextBlock Margin="0" Foreground="Red" Grid.Column="1" FontSize="18" Text="{Binding High}" />
-                            <TextBlock Margin="0" Foreground="LightBlue" Grid.Column="1" Grid.Row="1" FontSize="18" Text="{Binding Low}" />
+                    <TextBlock 
+                           Grid.Row="2"
+                           Padding="0" 
+                           Margin="0"
+                           FontSize="18" 
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="{Binding WindSpeed}" />
+                    <TextBlock 
+                           Grid.Row="3"
+                           Padding="0" 
+                           Margin="0"
+                           FontSize="12" 
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="{Binding Conditions}" />
+                </Grid>
 
-                            <TextBlock Foreground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" Grid.Column="3" FontSize="18" Text="{Binding Text}" />
-                        </Grid>
-                        
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-
-
-            <Grid Margin="0,12,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Margin="0,8,4,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26" Text="{Binding TotalCPU}" />
-                <ItemsControl Margin="0" Padding="0" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center" ItemsSource="{Binding CPU}">
+                <ItemsControl Margin="0" HorizontalAlignment="Center" ItemsSource="{Binding Forecast}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <!--<TextBlock FontSize="16" Margin="2" Text="{Binding}" />-->
-                                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0,0,0,0" Width="200" Height="0.5" Minimum="0" Maximum="100" Value="{Binding}" />
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16" />
+                                    <RowDefinition Height="16" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       Grid.RowSpan="2" 
+                                           Margin="4, 4"
+                                       FontSize="18" 
+                                       Text="{Binding Day}" />
+                                <TextBlock Margin="0" 
+                                       Foreground="Red" 
+                                       Grid.Column="1" 
+                                       FontSize="18" 
+                                       Text="{Binding High}" />
+                                <TextBlock Margin="0" 
+                                       Foreground="LightBlue" 
+                                       Grid.Column="1" 
+                                       Grid.Row="1" 
+                                       FontSize="18" 
+                                       Text="{Binding Low}" />
+
+                                <TextBlock Foreground="LightGray" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="3" 
+                                       FontSize="18" 
+                                       Text="{Binding Text}" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -75,29 +118,98 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
+            </StackPanel>
+            
+            <Grid Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="0,8,4,0" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left" 
+                           FontSize="26" 
+                           Text="{Binding TotalCPU}" />
+                <ItemsControl Margin="0" 
+                              Padding="0" 
+                              VerticalAlignment="Center" 
+                              Grid.Column="1" 
+                              HorizontalAlignment="Center" 
+                              ItemsSource="{Binding CPU}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <!--<TextBlock FontSize="16" Margin="2" Text="{Binding}" />-->
+                                <ProgressBar Background="DarkGray" 
+                                             Foreground="Yellow" 
+                                             Margin="0,-2,0,0" 
+                                             Width="250"
+                                             Height="1"
+                                             Minimum="0" 
+                                             Maximum="100" 
+                                             Value="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <StackPanel Grid.Row="1" Margin="0,4,4,0" HorizontalAlignment="Left" Orientation="Vertical">
+                    <TextBlock Margin="0" 
+                               HorizontalAlignment="Right" 
+                               FontSize="12" Text="{Binding Memory}" />
+                    <TextBlock Margin="0,-4,4,0" 
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Top" 
+                               FontSize="12" 
+                               Foreground="LightGray">free</TextBlock>
+                </StackPanel>
+                <ProgressBar Background="DarkGray" 
+                             Foreground="Yellow" 
+                             BorderThickness="0"
+                             Margin="-1" 
+                             VerticalAlignment="Center"  
+                             Grid.Column="1" 
+                             Grid.Row="1"
+                             Width="250" 
+                             Height="1" 
+                             Minimum="0" 
+                             Maximum="{Binding TotalMemory}" 
+                             Value="{Binding UsedMemory}" />
             </Grid>
 
             <Grid Margin="0,0,0,12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="0,4,4,0" HorizontalAlignment="Left" Orientation="Vertical">
-                    <TextBlock Margin="0" HorizontalAlignment="Right" FontSize="12" Text="{Binding Memory}" />
-                    <TextBlock Margin="0,-4,4,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="12" Foreground="LightGray">free</TextBlock>
-                </StackPanel>
-                <ProgressBar Background="DarkGray" Foreground="Yellow" Margin="0" VerticalAlignment="Center"  Grid.Column="1" Width="200" Height="1" Minimum="0" Maximum="{Binding TotalMemory}" Value="{Binding UsedMemory}" />
-                
+
             </Grid>
             
             <Grid Margin="0,0,0,12">
+                <Viewbox>
+                    <WebView Name="wb" Width="550" Height="430" />
+                </Viewbox>
                 
-                <WebView Name="wb" Width="250" Height="250" />
             </Grid>
+            <Grid Margin="0,0,0,12">
+                <WebView Name="wb2" Width="320" Height="200" />
+            </Grid>
+            <!--
             <StackPanel Orientation="Horizontal" Name="brightness" />
             <StackPanel Orientation="Horizontal" Name="presets" />
             <StackPanel Orientation="Horizontal" Name="colors" />
+            -->
         </StackPanel>
     </Grid>
 </Page>

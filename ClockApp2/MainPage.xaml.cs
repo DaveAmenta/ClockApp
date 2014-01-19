@@ -118,8 +118,8 @@ namespace ClockApp2
             DataContext = this;
 
             wb.Navigate(new Uri("https://home.nest.com/"));
-            
-           
+            wb2.Navigate(new Uri("http://192.168.0.1/graph_if.svg?vlan2"));
+
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace ClockApp2
             };
             dt.Start();
 
-
+            /*
             var Presets = new List<string>
             {
                "White","Relax", "Default", "O_Default"
@@ -204,7 +204,7 @@ namespace ClockApp2
                 };
                 brightness.Children.Add(c);
             }
-
+            */
 
             //wb.Navigate(new Uri("http://192.168.0.1/graph_if.svg?vlan2"));
         }
